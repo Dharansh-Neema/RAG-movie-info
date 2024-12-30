@@ -11,3 +11,4 @@ pip install sentence-transformers
 pip install langchain
 pip install transformers
 pip install openai
+ pip install python-dotenv
