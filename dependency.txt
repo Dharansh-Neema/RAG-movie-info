@@ -1,0 +1,13 @@
+
+pip install pymupdf
+pip install tqdm
+pip install pandas
+pip install --upgrade numpy
+pip install pinecone["grpc"]
+pip install -qU langchain-openai
+pip install -qU langchain-huggingface #optional 
+pip install -qU langchain-pinecone
+pip install sentence-transformers
+pip install langchain
+pip install transformers
+pip install openai
