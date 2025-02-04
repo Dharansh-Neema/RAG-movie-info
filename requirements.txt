@@ -1,0 +1,14 @@
+pymupdf
+tqdm
+pandas
+numpy
+pinecone[grpc]
+langchain-openai
+langchain-huggingface #optional
+langchain-pinecone
+sentence-transformers
+langchain
+transformers
+openai
+python-dotenv
+Flask
