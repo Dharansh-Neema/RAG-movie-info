@@ -12,3 +12,4 @@ transformers
 openai
 python-dotenv
 Flask
+-e .
