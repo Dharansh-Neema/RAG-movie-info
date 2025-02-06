@@ -6,7 +6,7 @@ from pathlib import Path
 def setup_logger(
     name:str = "rank_predictor",
     log_file:str = "logs/src.log",
-    console_level:str="INFO",
+    console_level:str="DEBUG",
     file_level:str="DEBUG",
     max_bytes: int = 5*1024*1024, # 5MB
     backup_count: int=3
