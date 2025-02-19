@@ -1,0 +1,2 @@
+2025-02-19 23:38:19,230 | INFO     | data_processing | data_processing:42 | Successfully processed PDF: ./data/raw\movies_data.pdf
+2025-02-19 23:38:19,261 | INFO     | data_processing | data_processing:59 | Processed data saved successfully at ./data/processed\processed_movie_data.csv
