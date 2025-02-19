@@ -1,5 +1,5 @@
 import os
-import fitz  # pymupdf is imported as fitz
+import fitz  
 import pandas as pd
 from src.logger import setup_logger
 
