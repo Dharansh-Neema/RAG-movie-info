@@ -12,6 +12,8 @@ class DataEmbedding:
     """
     A class to handle text splitting, embedding generation, and storage in Pinecone DB.
     """
+    
+    id = 1
     def __init__(self):
         """
         Initializes the DataEmbedding class with logger, embedding model, Pinecone connection, and text splitter setup.
@@ -69,12 +71,15 @@ class DataEmbedding:
             separators=["\n\n", "\n", " ", ""]
         )
         df = text
-        chunks = self.text_splitter.split_text(df["content"])
+        all_chunks=[]
+        for content in df["content"].dropna():
+            chunks = self.text_splitter.split_text(content)
+            all_chunks.append(chunks)
         self.logger.info(f"Split text into {len(chunks)} chunks")
         
         # Optionally save chunks to disk
         self._save_chunks_to_disk(chunks)
-        return chunks
+        return all_chunks
 
     def _save_chunks_to_disk(self, chunks: list):
         """Saves text chunks to ./data/chunks.txt for debugging/auditing purposes."""
@@ -100,7 +105,7 @@ class DataEmbedding:
         vectors = []
         for idx, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
             vectors.append({
-                'id': f"chunk_{idx}_{hash(chunk)}",  # Unique ID with hash for deduplication
+                'id': id,
                 'values': embedding.tolist(),
                 'metadata': {'text': chunk}
             })
