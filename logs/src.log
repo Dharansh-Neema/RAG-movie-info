@@ -1,5 +1,0 @@
-2025-02-19 23:38:19,230 | INFO     | data_processing | data_processing:42 | Successfully processed PDF: ./data/raw\movies_data.pdf
-2025-02-19 23:38:19,261 | INFO     | data_processing | data_processing:59 | Processed data saved successfully at ./data/processed\processed_movie_data.csv
-2025-02-20 23:16:55,293 | INFO     | data_embedding | data_embedding:35 | Creating Pinecone index 'embeddings-pdf-index'
-2025-02-20 23:25:39,830 | INFO     | data_embedding | data_embedding:76 | Split text into 2 chunks
-2025-02-20 23:25:39,830 | INFO     | data_embedding | data_embedding:90 | Saved text chunks to ./data/chunks.txt

@@ -1,4 +1,0 @@
-2025-02-06 18:55:18,114 | DEBUG    | data_ingestion | data_ingestion:22 | PDF have been saved at : ./data/raw/movies_data.pdf
-2025-02-06 18:56:26,123 | DEBUG    | data_ingestion | data_ingestion:22 | PDF have been saved at : ./data/raw/movies_data.pdf
-2025-02-06 19:02:27,109 | DEBUG    | data_ingestion | data_ingestion:22 | PDF have been saved at : ./data/raw/movies_data.pdf
-2025-02-06 19:03:30,945 | ERROR    | data_ingestion | data_ingestion:29 | The URL does not point to a PDF file.

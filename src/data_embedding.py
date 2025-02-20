@@ -12,8 +12,6 @@ class DataEmbedding:
     """
     A class to handle text splitting, embedding generation, and storage in Pinecone DB.
     """
-    
-    id = 1
     def __init__(self):
         """
         Initializes the DataEmbedding class with logger, embedding model, Pinecone connection, and text splitter setup.
@@ -22,6 +20,7 @@ class DataEmbedding:
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         self._initialize_pinecone()
         self.text_splitter = None
+        self.id = 1
 
     def _initialize_pinecone(self):
         """Initializes Pinecone client and ensures the index exists."""
@@ -105,11 +104,11 @@ class DataEmbedding:
         vectors = []
         for idx, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
             vectors.append({
-                'id': id,
+                'id': str(self.id),
                 'values': embedding.tolist(),
                 'metadata': {'text': chunk}
             })
-        
+        self.id+=1
         # Upsert vectors in batches (Pinecone supports up to 100 vectors per upsert)
         batch_size = 100
         for i in range(0, len(vectors), batch_size):
