@@ -25,7 +25,7 @@ class Retrieval:
             logger.error("Error occurred while fetching the pinecone index".e)
             raise
         
-    def get_context(self,query:str):
+    def get_context(self,query:str)->str:
         try:
             index = self._get_index()
             embedded_query = self.model.encode(query,convert_to_tensor=False)
@@ -38,7 +38,8 @@ class Retrieval:
             )
 
             context = [match["metadata"]["text"] for match in results["matches"]]
-            logger.debug("Successfully get the context")
+            logger.debug("Successfully got the context")
+            return context
         except Exception as e:
             logger.error("Error occured while fethcing the context",e)
 
