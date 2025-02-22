@@ -21,10 +21,8 @@ class Retrieval:
 
     def _validate_environment(self) -> None:
         """Validate required environment variables."""
-        # self.openai_key = os.getenv("OPENAI_API_KEY")
-        self.openai_key = "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"
-        # self.pinecone_key = os.getenv("PINECONE_API_KEY")
-        self.pinecone_key = "pcsk_a4Txq_UcwbUshi6RvBZxNjvHUaDfK93zXNL3Getw67ajnt2QpPoWk9CykmkfAK8W44BXJ"
+        self.openai_key = os.getenv("OPENAI_API_KEY")
+        self.pinecone_key = os.getenv("PINECONE_API_KEY")
         if not self.openai_key:
             logger.critical("OPENAI_API_KEY not found in environment")
             raise EnvironmentError("OPENAI_API_KEY environment variable required")
