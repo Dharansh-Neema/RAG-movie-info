@@ -25,7 +25,7 @@ class Retrieval:
             logger.error("Error occurred while fetching the pinecone index".e)
             raise
         
-    def get_context(self,query:str)->str:
+    def generate_context(self,query:str)->str:
         try:
             index = self._get_index()
             embedded_query = self.model.encode(query,convert_to_tensor=False)
@@ -42,6 +42,51 @@ class Retrieval:
             return context
         except Exception as e:
             logger.error("Error occured while fethcing the context",e)
+
+
+    def generate_llm_prompt(self,query:str)->str:
+        """
+        This function will return a prompt for LLM to get the proper Response.
+        """
+        try:
+            context = self.get_context(query)
+            prompt = f"""
+            Use the following context to answer the question accurately.SInce you are used in RAG
+            If the information is not available in the context, reply "No relevant responses."
+
+            Context:
+            {context}
+
+            Question:
+            {query}
+
+            Answer:
+            """
+            logger.debug("Generated prompt for LLM")
+        except Exception as e:
+            logger.error("Error occurred while generating prompt for LLM")
+            raise
+
+    def llm_response(self,query:str)->str:
+        """
+        This will generate a response form LLM
+        """
+        try:
+            prompt = self.generate_llm_prompt(query=query)
+            response = self.llm(prompt)
+            logger.debug("Got the response from LLM")
+            return response
+        except Exception as e:
+            logger.error("Error occurred while generating response from LLM")
+
+if __name__ == '__main__':
+    query = """2.GodFather rating out of 10"""
+    retrieval = Retrieval()
+
+    response = retrieval.llm_response(query=query)
+    print(response)
+
+
 
         
     
