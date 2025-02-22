@@ -4,7 +4,6 @@ import os
 from langchain_openai import ChatOpenAI
 from pinecone.grpc import PineconeGRPC as Pinecone
 from sentence_transformers import SentenceTransformer
-
 class Retrieval:
     def __init__(self):
         self.__OPEN_AI_KEY = os.getenv("OPENAI_API_KEY")
@@ -29,7 +28,17 @@ class Retrieval:
     def get_context(self,query:str):
         try:
             index = self._get_index()
+            embedded_query = self.model.encode(query,convert_to_tensor=False)
+            logger.debug("Query Embedded Successfully!!")
 
+            results = index.query(
+                vector=embedded_query,
+                include_metadata = True,
+                top_k = 3
+            )
+
+            context = [match["metadata"]["text"] for match in results["matches"]]
+            logger.debug("Successfully get the context")
         except Exception as e:
             logger.error("Error occured while fethcing the context",e)
 
